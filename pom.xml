@@ -15,7 +15,10 @@
 	<description>Spring Boot Ecommerce Project</description>
 	<url/>
 	<licenses>
-		<license/>
+		<license>
+			<name>All Rights Reserved</name>
+			<url>https://github.com/hendwunga/spring-boot-ecommerce-backend/blob/master/LICENSE</url>
+		</license>
 	</licenses>
 	<developers>
 		<developer/>

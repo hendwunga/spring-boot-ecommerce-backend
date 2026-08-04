@@ -279,6 +279,18 @@ The email also provides a contact point for customer inquiries (e.g., `wungambar
 
 ---
 
+## 📄 License
+
+**All Rights Reserved.**
+
+This project and its source code are the exclusive property of the copyright
+holder. No permission is granted to copy, modify, distribute, or use the code
+without prior written consent. See the [LICENSE](LICENSE) file for details.
+
+Copyright © 2026 Hendrowunga
+
+---
+
 <div align="center">
   <p>Thank You</p>
 </div>
