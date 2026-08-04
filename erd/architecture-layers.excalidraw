@@ -33,7 +33,7 @@
           "type": "text"
         }
       ],
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false
     },
@@ -60,7 +60,7 @@
       "versionNonce": 393,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "CLIENT\n(SPA / Mobile App)",
@@ -98,7 +98,7 @@
       "versionNonce": 524,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false
     },
@@ -125,7 +125,7 @@
       "versionNonce": 655,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "PRESENTATION LAYER (Controllers)",
@@ -168,7 +168,7 @@
           "type": "text"
         }
       ],
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false
     },
@@ -195,7 +195,7 @@
       "versionNonce": 1048,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "AuthController",
@@ -238,7 +238,7 @@
           "type": "text"
         }
       ],
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false
     },
@@ -265,7 +265,7 @@
       "versionNonce": 1441,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "CheckoutController",
@@ -308,7 +308,7 @@
           "type": "text"
         }
       ],
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false
     },
@@ -335,7 +335,7 @@
       "versionNonce": 1834,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "WebhookController",
@@ -378,7 +378,7 @@
           "type": "text"
         }
       ],
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false
     },
@@ -405,7 +405,7 @@
       "versionNonce": 2227,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "Data REST endpoints",
@@ -443,7 +443,7 @@
       "versionNonce": 2358,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "points": [
@@ -495,7 +495,7 @@
       "versionNonce": 2489,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false
     },
@@ -522,7 +522,7 @@
       "versionNonce": 2620,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "SERVICE LAYER (Business Logic)",
@@ -565,7 +565,7 @@
           "type": "text"
         }
       ],
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false
     },
@@ -592,7 +592,7 @@
       "versionNonce": 3013,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "AuthService\nregister / login / profile",
@@ -635,7 +635,7 @@
           "type": "text"
         }
       ],
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false
     },
@@ -662,7 +662,7 @@
       "versionNonce": 3406,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "CheckoutService\nplaceOrder / PaymentIntent",
@@ -700,7 +700,7 @@
       "versionNonce": 3537,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "points": [
@@ -752,7 +752,7 @@
       "versionNonce": 3668,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false
     },
@@ -779,7 +779,7 @@
       "versionNonce": 3799,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "DATA ACCESS LAYER (Spring Data JPA)",
@@ -822,7 +822,7 @@
           "type": "text"
         }
       ],
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false
     },
@@ -849,7 +849,7 @@
       "versionNonce": 4192,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "JpaRepository\nAppUser / Order / Product ...",
@@ -892,7 +892,7 @@
           "type": "text"
         }
       ],
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false
     },
@@ -919,7 +919,7 @@
       "versionNonce": 4585,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "Repositories\nfindByEmail / findByTrackingNumber",
@@ -957,7 +957,7 @@
       "versionNonce": 4716,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "points": [
@@ -1009,7 +1009,7 @@
       "versionNonce": 4847,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false
     },
@@ -1036,7 +1036,7 @@
       "versionNonce": 4978,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "JPA ENTITIES\nAppUser, Customer, Order, Product, Address ...",
@@ -1074,7 +1074,7 @@
       "versionNonce": 5109,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "points": [
@@ -1126,7 +1126,7 @@
       "versionNonce": 5240,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false
     },
@@ -1153,7 +1153,7 @@
       "versionNonce": 5371,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "MySQL (docker db, port 3306)",
@@ -1191,7 +1191,7 @@
       "versionNonce": 5502,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "points": [
@@ -1243,7 +1243,7 @@
       "versionNonce": 5633,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false
     },
@@ -1270,7 +1270,7 @@
       "versionNonce": 5764,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "SECURITY (cross-cutting)",
@@ -1306,7 +1306,7 @@
       "versionNonce": 5895,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "SecurityFilterChain",
@@ -1342,7 +1342,7 @@
       "versionNonce": 6026,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "JwtService (HS256 local)",
@@ -1378,7 +1378,7 @@
       "versionNonce": 6157,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "JwtDecoder dual: HS256 + RS256 (Okta)",
@@ -1414,7 +1414,7 @@
       "versionNonce": 6288,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "BCryptPasswordEncoder",
@@ -1452,7 +1452,7 @@
       "versionNonce": 6419,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "points": [
@@ -1504,7 +1504,7 @@
       "versionNonce": 6550,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false
     },
@@ -1531,7 +1531,7 @@
       "versionNonce": 6681,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "DTOs\nAuthResponse, MeResponse, Purchase, PaymentInfo ...",
@@ -1569,7 +1569,7 @@
       "versionNonce": 6812,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false
     },
@@ -1596,7 +1596,7 @@
       "versionNonce": 6943,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "CONFIG",
@@ -1632,7 +1632,7 @@
       "versionNonce": 7074,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "SecurityConfiguration",
@@ -1668,7 +1668,7 @@
       "versionNonce": 7205,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "OpenApiConfig (Swagger)",
@@ -1704,7 +1704,7 @@
       "versionNonce": 7336,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "MyDataRestConfig",
@@ -1740,7 +1740,7 @@
       "versionNonce": 7467,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "DataSeeder (seed SQL)",
@@ -1778,7 +1778,7 @@
       "versionNonce": 7598,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "points": [
@@ -1835,7 +1835,7 @@
           "type": "text"
         }
       ],
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false
     },
@@ -1862,7 +1862,7 @@
       "versionNonce": 7991,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "OKTA / MOCK OIDC\n(issuer + JWKS, HTTPS)",
@@ -1900,7 +1900,7 @@
       "versionNonce": 8122,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "points": [
@@ -1950,7 +1950,7 @@
       "versionNonce": 8253,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "issuer discovery\n+ JWKS RS256",
@@ -1993,7 +1993,7 @@
           "type": "text"
         }
       ],
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false
     },
@@ -2020,7 +2020,7 @@
       "versionNonce": 8646,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "STRIPE API\n(PaymentIntents, HTTPS)",
@@ -2058,7 +2058,7 @@
       "versionNonce": 8777,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "points": [
@@ -2108,7 +2108,7 @@
       "versionNonce": 8908,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "create / retrieve /\nconfirm PaymentIntent",

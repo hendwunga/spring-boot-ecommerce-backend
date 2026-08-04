@@ -1,0 +1,47 @@
+sequenceDiagram
+    autonumber
+    participant C as Client / Frontend (Stripe Elements)
+    participant CC as CheckoutController (/api/checkout/*)
+    participant S as CheckoutServiceImpl
+    participant DB as MySQL (orders / order_item)
+    participant ST as Stripe API
+    participant WH as WebhookController (/api/webhook/stripe)
+
+    Note over C,WH: STEP 1 — Place order
+    C->>CC: POST /api/checkout/purchase { customer, items, billing, shipping }
+    CC->>S: placeOrder(purchase)
+    S->>S: UUID orderTrackingNumber · status = PENDING
+    S->>DB: save order graph (cascade order_item + address)
+    DB-->>S: ok
+    S-->>CC: PurchaseResponse { orderTrackingNumber }
+    CC-->>C: 200 tracking number
+
+    Note over C,WH: STEP 2 — Create PaymentIntent
+    C->>CC: POST /api/checkout/payment-intent { amount, currency, receiptEmail, trackingNumber }
+    CC->>S: createPaymentIntent(info)
+    S->>ST: PaymentIntent.create(amount, currency, metadata.orderTrackingNumber)
+    ST-->>S: id + clientSecret
+    S-->>CC: PaymentIntent JSON
+    CC-->>C: clientSecret → render Stripe Elements
+
+    Note over C,WH: STEP 3 — Confirm payment
+    C->>CC: POST /api/checkout/payment-intent/{id}/confirm { paymentMethodId | token }
+    CC->>S: confirmPaymentIntent(id, info)
+    alt only a token given
+        S->>ST: PaymentMethod.create(type=card, token)
+        ST-->>S: paymentMethodId
+    end
+    S->>ST: PaymentIntent.retrieve(id) + confirm(payment_method)
+    ST-->>S: status = "succeeded"
+    S->>DB: order.status = PAID (direct update)
+    S-->>CC: confirmed PaymentIntent
+    CC-->>C: 200 success
+
+    Note over ST,WH: STEP 4 — Async webhook (idempotent fallback)
+    ST->>WH: POST /api/webhook/stripe (Stripe-Signature header)
+    WH->>WH: Webhook.constructEvent(payload, sig, secret)
+    WH-->>ST: 400 Invalid signature (if sig bad)
+    WH->>S: updateOrderStatusByTrackingNumber(trackingNumber)
+    S->>DB: order.status = PAID
+    S-->>WH: ok
+    WH-->>ST: 200 { received: true }

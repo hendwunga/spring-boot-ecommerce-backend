@@ -35,7 +35,7 @@
           "type": "text"
         }
       ],
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false
     },
@@ -64,7 +64,7 @@
       "versionNonce": 9301,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "country",
@@ -109,7 +109,7 @@
           "type": "text"
         }
       ],
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false
     },
@@ -138,7 +138,7 @@
       "versionNonce": 9694,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "id  (PK)\ncode\nname",
@@ -183,7 +183,7 @@
           "type": "text"
         }
       ],
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false
     },
@@ -212,7 +212,7 @@
       "versionNonce": 10087,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "state",
@@ -257,7 +257,7 @@
           "type": "text"
         }
       ],
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false
     },
@@ -286,7 +286,7 @@
       "versionNonce": 10480,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "id  (PK)\nname\ncountry_id  (FK)",
@@ -331,7 +331,7 @@
           "type": "text"
         }
       ],
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false
     },
@@ -360,7 +360,7 @@
       "versionNonce": 10873,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "product_category",
@@ -405,7 +405,7 @@
           "type": "text"
         }
       ],
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false
     },
@@ -434,7 +434,7 @@
       "versionNonce": 11266,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "id  (PK)\ncategory_name",
@@ -479,7 +479,7 @@
           "type": "text"
         }
       ],
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false
     },
@@ -508,7 +508,7 @@
       "versionNonce": 11659,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "product",
@@ -553,7 +553,7 @@
           "type": "text"
         }
       ],
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false
     },
@@ -582,7 +582,7 @@
       "versionNonce": 12052,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "id  (PK)\nsku\nname\ndescription\nunit_price\nimage_url\nactive\nunits_in_stock\ndate_created\nlast_updated\ncategory_id  (FK)",
@@ -627,7 +627,7 @@
           "type": "text"
         }
       ],
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false
     },
@@ -656,7 +656,7 @@
       "versionNonce": 12445,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "customer",
@@ -701,7 +701,7 @@
           "type": "text"
         }
       ],
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false
     },
@@ -730,7 +730,7 @@
       "versionNonce": 12838,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "id  (PK)\nfirst_name\nlast_name\nemail",
@@ -775,7 +775,7 @@
           "type": "text"
         }
       ],
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false
     },
@@ -804,7 +804,7 @@
       "versionNonce": 13231,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "orders",
@@ -849,7 +849,7 @@
           "type": "text"
         }
       ],
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false
     },
@@ -878,7 +878,7 @@
       "versionNonce": 13624,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "id  (PK)\norder_tracking_number\ntotal_quantity\ntotal_price\nstatus\ndate_created\nlast_updated\ncustomer_id  (FK)\nshipping_address_id  (FK)\nbilling_address_id  (FK)",
@@ -923,7 +923,7 @@
           "type": "text"
         }
       ],
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false
     },
@@ -952,7 +952,7 @@
       "versionNonce": 14017,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "order_item",
@@ -997,7 +997,7 @@
           "type": "text"
         }
       ],
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false
     },
@@ -1026,7 +1026,7 @@
       "versionNonce": 14410,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "id  (PK)\nimage_url\nunit_price\nquantity\nproduct_id\norder_id  (FK)",
@@ -1071,7 +1071,7 @@
           "type": "text"
         }
       ],
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false
     },
@@ -1100,7 +1100,7 @@
       "versionNonce": 14803,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "address",
@@ -1145,7 +1145,7 @@
           "type": "text"
         }
       ],
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false
     },
@@ -1174,7 +1174,7 @@
       "versionNonce": 15196,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "id  (PK)\nstreet\ncity\nstate\ncountry\nzip_code",
@@ -1219,7 +1219,7 @@
           "type": "text"
         }
       ],
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false
     },
@@ -1248,7 +1248,7 @@
       "versionNonce": 15589,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "app_user",
@@ -1293,7 +1293,7 @@
           "type": "text"
         }
       ],
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false
     },
@@ -1322,7 +1322,7 @@
       "versionNonce": 15982,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "id  (PK)\nfirst_name\nlast_name\nemail  (unique, NOT NULL)\npassword  (NOT NULL)",
@@ -1360,7 +1360,7 @@
       "versionNonce": 16113,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "points": [
@@ -1402,7 +1402,7 @@
       "versionNonce": 16244,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "1",
@@ -1438,7 +1438,7 @@
       "versionNonce": 16375,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "N",
@@ -1476,7 +1476,7 @@
       "versionNonce": 16506,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "points": [
@@ -1518,7 +1518,7 @@
       "versionNonce": 16637,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "1",
@@ -1554,7 +1554,7 @@
       "versionNonce": 16768,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "N",
@@ -1592,7 +1592,7 @@
       "versionNonce": 16899,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "points": [
@@ -1634,7 +1634,7 @@
       "versionNonce": 17030,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "1",
@@ -1670,7 +1670,7 @@
       "versionNonce": 17161,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "N",
@@ -1708,7 +1708,7 @@
       "versionNonce": 17292,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "points": [
@@ -1750,7 +1750,7 @@
       "versionNonce": 17423,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "1",
@@ -1786,7 +1786,7 @@
       "versionNonce": 17554,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "N",
@@ -1824,7 +1824,7 @@
       "versionNonce": 17685,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "points": [
@@ -1866,7 +1866,7 @@
       "versionNonce": 17816,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "N",
@@ -1902,7 +1902,7 @@
       "versionNonce": 17947,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "1",
@@ -1938,7 +1938,7 @@
       "versionNonce": 18078,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "shipping / billing (2 FK)",
@@ -1976,7 +1976,7 @@
       "versionNonce": 18209,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "points": [
@@ -2018,7 +2018,7 @@
       "versionNonce": 18340,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "N",
@@ -2054,7 +2054,7 @@
       "versionNonce": 18471,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "1",
@@ -2090,7 +2090,7 @@
       "versionNonce": 18602,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1785834691857,
+      "updated": 1785836190868,
       "link": null,
       "locked": false,
       "text": "product_id plain Long, no JPA relation",

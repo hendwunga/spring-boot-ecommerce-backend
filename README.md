@@ -74,21 +74,128 @@ This project follows a modular and layered architecture:
 - **Security**: OAuth2 with Okta
 - **Configuration**: Externalized settings via `.env` and `application.properties`
 
-### 📐 Diagrams (editable Excalidraw)
+### 📐 Diagrams
 
-These diagrams are generated from the actual code (`scripts/gen-diagrams.py`).
-Open any `.excalidraw` file with [excalidraw.com](https://excalidraw.com) (File →
-Open) or the VSCode Excalidraw extension:
+The Excalidraw diagrams are generated from the actual code
+(`scripts/gen-diagrams.py`). Open any `.excalidraw` file with
+[excalidraw.com](https://excalidraw.com) (File → Open) or the VSCode Excalidraw
+extension:
 
 | Diagram | File |
 |---------|------|
 | Layered architecture (Controller → Service → DAO → Entity → MySQL + Security/DTO/Config) | [`erd/architecture-layers.excalidraw`](erd/architecture-layers.excalidraw) |
 | Entity Relationship (tables, PK/FK, cardinalities) | [`erd/ERD.excalidraw`](erd/ERD.excalidraw) |
 | Docker Compose stack (db, oidc, app + host `.env`) | [`erd/docker-architecture.excalidraw`](erd/docker-architecture.excalidraw) |
-| Auth flow: local JWT (HS256) + Okta/mock OIDC (RS256) | [`erd/okta-auth-flow.excalidraw`](erd/okta-auth-flow.excalidraw) |
-| Stripe payment flow (purchase → PaymentIntent → webhook → PAID) | [`erd/stripe-payment-flow.excalidraw`](erd/stripe-payment-flow.excalidraw) |
+| Auth flow: local JWT (HS256) + Okta/mock OIDC (RS256) | [`erd/okta-auth-flow.mmd`](erd/okta-auth-flow.mmd) |
+| Stripe payment flow (purchase → PaymentIntent → webhook → PAID) | [`erd/stripe-payment-flow.mmd`](erd/stripe-payment-flow.mmd) |
 
-Regenerate after code changes with `python3 scripts/gen-diagrams.py`.
+Regenerate Excalidraw diagrams after code changes with
+`python3 scripts/gen-diagrams.py`. The auth and Stripe flows below are Mermaid
+(diagram source in `erd/*.mmd`, editable at [mermaid.live](https://mermaid.live)).
+
+#### 🔑 Okta / Auth Flow (Mermaid)
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant C as Client (SPA / Mobile)
+    participant A as AuthController (/api/auth/*)
+    participant S as AuthServiceImpl
+    participant J as JwtService (HS256)
+    participant R as AppUserRepository
+    participant DB as MySQL (app_user)
+    participant F as SecurityFilterChain
+    participant O as Okta / mock OIDC (issuer + JWKS)
+
+    Note over C,O: FLOW A — Local user (JWT HS256)
+    C->>A: POST /api/auth/register | /api/auth/login
+    A->>S: register() / login()
+    S->>R: existsByEmail() / findByEmail()
+    R->>DB: SELECT
+    DB-->>R: user row
+    R-->>S: AppUser
+    S->>S: BCryptPasswordEncoder.matches()
+    S->>J: generateToken(user)
+    J-->>S: HS256 JWT (sub, email, exp = 1h)
+    S-->>A: AuthResponse { token, firstName, lastName, email }
+    A-->>C: 201 Created / 200 OK
+
+    Note over C,O: Protected request with local JWT
+    C->>F: GET /api/auth/me (Authorization: Bearer JWT)
+    F->>F: JwtDecoder HS256 (app.jwt.secret)
+    F-->>C: 401 Unauthorized (if invalid / expired)
+    F->>A: authenticated request (Jwt principal)
+    A->>S: findProfile(email)
+    S-->>A: MeResponse { provider: "local" }
+    A-->>C: 200 MeResponse
+
+    Note over C,O: FLOW B — Okta / mock OIDC token (RS256)
+    C->>O: authorize (prod) | GET /oauth2/default/issue?email=.. (dev)
+    O-->>C: RS256 JWT (iss, sub, email)
+    C->>F: GET /api/auth/me (Bearer Okta JWT)
+    F->>O: issuer discovery /.well-known/openid-configuration (lazy, first use)
+    O-->>F: issuer, jwks_uri, RS256
+    F->>O: GET jwks (RSA public key, kid)
+    O-->>F: JWKS
+    F->>F: NimbusJwtDecoder RS256 (verify sig + iss)
+    F-->>C: 401 Unauthorized (if invalid)
+    F->>A: authenticated request
+    A->>S: findProfile(email) → no local user → okta profile
+    S-->>A: MeResponse { provider: "okta" }
+    A-->>C: 200 MeResponse
+```
+
+#### 💳 Stripe Payment Flow (Mermaid)
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant C as Client / Frontend (Stripe Elements)
+    participant CC as CheckoutController (/api/checkout/*)
+    participant S as CheckoutServiceImpl
+    participant DB as MySQL (orders / order_item)
+    participant ST as Stripe API
+    participant WH as WebhookController (/api/webhook/stripe)
+
+    Note over C,WH: STEP 1 — Place order
+    C->>CC: POST /api/checkout/purchase { customer, items, billing, shipping }
+    CC->>S: placeOrder(purchase)
+    S->>S: UUID orderTrackingNumber · status = PENDING
+    S->>DB: save order graph (cascade order_item + address)
+    DB-->>S: ok
+    S-->>CC: PurchaseResponse { orderTrackingNumber }
+    CC-->>C: 200 tracking number
+
+    Note over C,WH: STEP 2 — Create PaymentIntent
+    C->>CC: POST /api/checkout/payment-intent { amount, currency, receiptEmail, trackingNumber }
+    CC->>S: createPaymentIntent(info)
+    S->>ST: PaymentIntent.create(amount, currency, metadata.orderTrackingNumber)
+    ST-->>S: id + clientSecret
+    S-->>CC: PaymentIntent JSON
+    CC-->>C: clientSecret → render Stripe Elements
+
+    Note over C,WH: STEP 3 — Confirm payment
+    C->>CC: POST /api/checkout/payment-intent/{id}/confirm { paymentMethodId | token }
+    CC->>S: confirmPaymentIntent(id, info)
+    alt only a token given
+        S->>ST: PaymentMethod.create(type=card, token)
+        ST-->>S: paymentMethodId
+    end
+    S->>ST: PaymentIntent.retrieve(id) + confirm(payment_method)
+    ST-->>S: status = "succeeded"
+    S->>DB: order.status = PAID (direct update)
+    S-->>CC: confirmed PaymentIntent
+    CC-->>C: 200 success
+
+    Note over ST,WH: STEP 4 — Async webhook (idempotent fallback)
+    ST->>WH: POST /api/webhook/stripe (Stripe-Signature header)
+    WH->>WH: Webhook.constructEvent(payload, sig, secret)
+    WH-->>ST: 400 Invalid signature (if sig bad)
+    WH->>S: updateOrderStatusByTrackingNumber(trackingNumber)
+    S->>DB: order.status = PAID
+    S-->>WH: ok
+    WH-->>ST: 200 { received: true }
+```
 
 ### 🔗 Entity Relationships
 
