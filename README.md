@@ -110,16 +110,17 @@ Regenerate Excalidraw diagrams after code changes with
 #### 🔑 Okta / Auth Flow (Mermaid)
 
 ```mermaid
+%%{init: {"theme": "base", "themeVariables": {"noteBkgColor": "#fef9c3", "noteTextColor": "#1e293b", "noteBorderColor": "#ca8a04", "sequenceNumberColor": "#475569"}}}%%
 sequenceDiagram
     autonumber
-    participant C as Client (SPA / Mobile)
-    participant A as AuthController (/api/auth/*)
-    participant S as AuthServiceImpl
-    participant J as JwtService (HS256)
-    participant R as AppUserRepository
-    participant DB as MySQL (app_user)
-    participant F as SecurityFilterChain
-    participant O as Okta / mock OIDC (issuer + JWKS)
+    participant C as Client (SPA / Mobile) #16a34a;stroke:#14532d
+    participant A as AuthController (/api/auth/*) #4f46e5;stroke:#312e81
+    participant S as AuthServiceImpl #6366f1;stroke:#3730a3
+    participant J as JwtService (HS256) #8b5cf6;stroke:#5b21b6
+    participant R as AppUserRepository #94a3b8;stroke:#334155
+    participant DB as MySQL (app_user) #f59e0b;stroke:#92400e
+    participant F as SecurityFilterChain #e11d48;stroke:#881337
+    participant O as Okta / mock OIDC (issuer + JWKS) #7c3aed;stroke:#4c1d95
 
     Note over C,O: FLOW A — Local user (JWT HS256)
     C->>A: POST /api/auth/register | /api/auth/login
@@ -162,14 +163,15 @@ sequenceDiagram
 #### 💳 Stripe Payment Flow (Mermaid)
 
 ```mermaid
+%%{init: {"theme": "base", "themeVariables": {"noteBkgColor": "#fef9c3", "noteTextColor": "#1e293b", "noteBorderColor": "#ca8a04", "sequenceNumberColor": "#475569"}}}%%
 sequenceDiagram
     autonumber
-    participant C as Client / Frontend (Stripe Elements)
-    participant CC as CheckoutController (/api/checkout/*)
-    participant S as CheckoutServiceImpl
-    participant DB as MySQL (orders / order_item)
-    participant ST as Stripe API
-    participant WH as WebhookController (/api/webhook/stripe)
+    participant C as Client / Frontend (Stripe Elements) #16a34a;stroke:#14532d
+    participant CC as CheckoutController (/api/checkout/*) #4f46e5;stroke:#312e81
+    participant S as CheckoutServiceImpl #6366f1;stroke:#3730a3
+    participant DB as MySQL (orders / order_item) #f59e0b;stroke:#92400e
+    participant ST as Stripe API #ea580c;stroke:#9a3412
+    participant WH as WebhookController (/api/webhook/stripe) #e11d48;stroke:#881337
 
     Note over C,WH: STEP 1 — Place order
     C->>CC: POST /api/checkout/purchase { customer, items, billing, shipping }
