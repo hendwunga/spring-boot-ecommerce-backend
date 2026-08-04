@@ -319,6 +319,45 @@ delivers webhooks to `POST /api/webhook/stripe`.
 > ⚠️ The mock OIDC is for local development only. For production, use a real Okta
 > tenant and regenerate the truststore without the self-signed mock cert.
 
+#### 🔐 Mock OIDC certificate & key (`docker/oidc/`)
+
+`docker/oidc/` holds the dev mock OIDC provider:
+
+| File | Purpose | Git |
+|------|---------|-----|
+| `mock_oidc.py` | HTTPS OIDC server (discovery, JWKS, token issuance) | ✔ committed |
+| `Dockerfile` | `python:3.12-slim` + `cryptography` | ✔ committed |
+| `cert.pem` / `key.pem` | self-signed cert + private key (SAN: `oidc`, `localhost`, `127.0.0.1`) | ✖ gitignored (dev only) |
+
+The cert is required so the **app** container can call
+`https://oidc:8085` (HTTPS issuer discovery). At image build time the cert is
+imported into a combined truststore (`cacerts` + mock cert) via `keytool`, and
+the app runs with `JAVA_TOOL_OPTIONS="-Djavax.net.ssl.trustStore=..."`.
+
+Generate (skips automatically if the files already exist):
+
+```bash
+bash scripts/gen-oidc-cert.sh
+```
+
+Regenerate from scratch (e.g. cert expired or lost):
+
+```bash
+rm docker/oidc/cert.pem docker/oidc/key.pem
+bash scripts/gen-oidc-cert.sh
+```
+
+Verify the generated cert:
+
+```bash
+openssl x509 -in docker/oidc/cert.pem -noout -subject -ext subjectAltName
+# expect: subject=CN = mock-oidc
+#         DNS:oidc, DNS:localhost, IP Address:127.0.0.1
+```
+
+> ⚠️ After regenerating, rebuild the images so the oidc container and the app's
+> truststore use the new cert: `docker compose up -d --build`
+
 ---
 
 ### 🔄 Stripe Webhook (Local Development)
