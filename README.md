@@ -65,14 +65,28 @@ Built for maintainability, security, and extensibility.
 
 ## 🏛️ Architecture
 
-This project follows a modular and layered architecture:
+The system follows a layered architecture (see diagram below) — requests flow
+**Client → Controller → Service → Repository → Entity → MySQL**, with
+cross-cutting **Security**, **DTOs**, and **Config**, and two external
+integrations (**Okta / mock OIDC** for identity, **Stripe** for payments):
 
-- **Entities**: Core domain models (e.g., `Product`, `Order`, `Customer`)
-- **Repositories**: Handle data persistence
-- **Services**: Contain business logic
-- **Controllers**: REST API endpoints
-- **Security**: OAuth2 with Okta
-- **Configuration**: Externalized settings via `.env` and `application.properties`
+- **Client**: SPA / mobile app consuming the REST API with a Bearer JWT.
+- **Presentation Layer** — controllers: `AuthController`, `CheckoutController`,
+  `WebhookController`, plus Spring Data REST endpoints (`/api/products`, ...).
+- **Service Layer (Business Logic)** — `AuthService` (register / login / profile)
+  and `CheckoutService` (placeOrder / PaymentIntent).
+- **Data Access Layer (Spring Data JPA)** — `JpaRepository` interfaces
+  (`AppUser`, `Order`, `Product`, ...) with derived queries
+  (`findByEmail`, `findByOrderTrackingNumber`, ...).
+- **JPA Entities** — `AppUser`, `Customer`, `Order`, `Product`, `Address`, ...
+- **Data** — MySQL (`db` container, port 3306).
+- **Security (cross-cutting)** — `SecurityFilterChain`, `JwtService` (HS256 local),
+  dual `JwtDecoder` (HS256 + RS256 Okta), `BCryptPasswordEncoder`.
+- **DTOs** — `AuthResponse`, `MeResponse`, `Purchase`, `PaymentInfo`, ...
+- **Config** — `SecurityConfiguration`, `OpenApiConfig` (Swagger),
+  `MyDataRestConfig`, `DataSeeder` (seed SQL).
+
+<img src="erd/architecture-layers.svg" alt="Layered architecture" width="800"/>
 
 ### 📐 Diagrams
 
@@ -264,7 +278,22 @@ Once started, access the application at `http://localhost:9898`.
 ### 🐳 Running with Docker Compose (recommended)
 
 The stack includes **MySQL**, the app, and a **dev-only mock OIDC server**
-(`docker/oidc/`) that mimics Okta over HTTPS so the Okta flow works out of the box.
+(`docker/oidc/`) that mimics Okta over HTTPS so the Okta flow works out of the box:
+
+| Service | Image | Host port | Notes |
+|---------|-------|-----------|-------|
+| `db` | `mysql:8.4` | `3308 → 3306` | `MYSQL_DATABASE=ecommerce`, user/pass `ecommerce`, volume `mysql-data` |
+| `oidc` | `python:3.12-slim` (build `./docker/oidc`) | `8085 → 8085` (HTTPS) | self-signed cert (dev), serves OIDC discovery + JWKS, `ISSUER_BASE=https://oidc:8085` |
+| `app` | Spring Boot (build `.`) | `9898 → 9898` | truststore = cacerts + mock cert, runs `springboot-images-new.jar` |
+
+<img src="erd/docker-architecture-layers.svg" alt="Docker Compose architecture" width="800"/>
+
+The **app** talks to **db** over JDBC (`jdbc:mysql://db:3306/ecommerce`) and to
+**oidc** over HTTPS (issuer discovery + JWKS). The **app** reads
+`STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `JWT_SECRET`, `ALLOWED_ORIGINS`,
+`OKTA_ISSUER` and DB settings from the host `.env` (interpolated by compose).
+The **browser** reaches the app via HTTP `:9898` (REST / Swagger), and **Stripe**
+delivers webhooks to `POST /api/webhook/stripe`.
 
 1. **Generate the mock OIDC self-signed cert** (gitignored, dev only):
     ```bash
