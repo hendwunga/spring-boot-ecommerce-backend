@@ -38,23 +38,28 @@ Built for maintainability, security, and extensibility.
 
 ## ✨ Features
 
-- 🔐 **OAuth2 Authentication** via Okta
+- 🔐 **Authentication** — local (JWT) and OAuth2 via Okta
+- 👤 **`GET /api/auth/me`** — current user profile
 - 📦 **Product & Category Management**
 - 🛒 **Cart and Order Processing** with billing/shipping
-- 💳 **Stripe Integration** for secure payments
+- 💳 **Stripe Integration** for secure payments + webhook (`/api/webhook/stripe`) that marks orders as `PAID`
 - 📘 **Interactive API Documentation** with Swagger UI
 - 🧩 **Relational Entity Design** using JPA & Hibernate
+- 🐳 **Docker Compose** — MySQL + app + dev mock OIDC
+- 🧪 **Automated tests** (unit + integration, H2 test profile)
 
 ---
 
 ## 🧰 Technologies Used
 
-- **Java 17** (Spring Boot)
+- **Java 17** (Spring Boot 3)
 - **MySQL** (Relational Database)
 - **Spring Data JPA** (ORM)
-- **Swagger** (API Testing & Docs)
-- **Okta OAuth2** (Authentication)
-- **Stripe** (Payments)
+- **Spring Security** (JWT + OAuth2/OIDC via Okta)
+- **Swagger / OpenAPI 3** (API Testing & Docs)
+- **Stripe** (Payments + webhook)
+- **JUnit 5 + MockMvc** (tests, H2 in-memory)
+- **Docker & Docker Compose** (local stack)
 
 ---
 
@@ -99,7 +104,7 @@ This project follows a modular and layered architecture:
 2. **Create `.env` File**  
    Copy example file and customize:
     ```bash
-    cp .env.example .env
+    cp .exampel.env .env
     ```
 
 3. **Configure the `.env` File**  
@@ -113,6 +118,8 @@ This project follows a modular and layered architecture:
     DATABASE_PASSWORD=password
 
     STRIPE_SECRET_KEY=your-stripe-secret
+    STRIPE_WEBHOOK_SECRET=whsec_...   # optional locally, needed for webhook verification
+    JWT_SECRET=your-random-jwt-secret
     ALLOWED_ORIGINS=http://localhost:3000
     ```
 
@@ -130,6 +137,66 @@ Once started, access the application at `http://localhost:9898`.
 
 ---
 
+### 🐳 Running with Docker Compose (recommended)
+
+The stack includes **MySQL**, the app, and a **dev-only mock OIDC server**
+(`docker/oidc/`) that mimics Okta over HTTPS so the Okta flow works out of the box.
+
+1. **Generate the mock OIDC self-signed cert** (gitignored, dev only):
+    ```bash
+    bash scripts/gen-oidc-cert.sh
+    ```
+
+2. **Start the stack**:
+    ```bash
+    docker compose up -d --build
+    ```
+
+   - App: http://localhost:9898 (Swagger: `/swagger-ui/index.html`)
+   - MySQL: `127.0.0.1:3308` (user `ecommerce` / pass `ecommerce123`, db `ecommerce`)
+   - Mock OIDC: https://localhost:8085 — get a test JWT with:
+     `curl -sk "https://localhost:8085/oauth2/default/issue?email=you@example.com"`
+   - Stripe API key / webhook secret / JWT secret are read from your `.env`.
+
+3. **Stop**:
+    ```bash
+    docker compose down
+    ```
+
+> ⚠️ The mock OIDC is for local development only. For production, use a real Okta
+> tenant and regenerate the truststore without the self-signed mock cert.
+
+---
+
+### 🔄 Stripe Webhook (Local Development)
+
+The endpoint `POST /api/webhook/stripe` verifies the Stripe signature (hex `v1=`)
+and sets the matching order to `PAID` on `payment_intent.succeeded`.
+
+1. Install the Stripe CLI: https://docs.stripe.com/stripe-cli
+2. Authenticate: `stripe login` (opens browser)
+3. Forward real webhooks to the app:
+    ```bash
+    bash scripts/stripe-listen.sh
+    ```
+   The CLI prints a **webhook signing secret** (`whsec_...`). Copy it into your
+   `.env` as `STRIPE_WEBHOOK_SECRET` and restart the app.
+4. Trigger a test event: `stripe trigger payment_intent.succeeded`
+
+---
+
+### 🧪 Running Tests
+
+Tests use an in-memory H2 database (profile `test`), so no external services are needed:
+
+```bash
+mvn test
+```
+
+Covers: JWT encode/decode, auth service & controller, checkout + webhook flow, and security rules.
+
+---
+
 ## 🚀 Usage
 
 After running the app, you can interact with the system through:
@@ -143,10 +210,13 @@ After running the app, you can interact with the system through:
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| `POST` | `/api/customers` | Register a new customer |
-| `GET`  | `/api/products`  | Fetch product catalog |
-| `POST` | `/api/orders`    | Create a new order |
-| `GET`  | `/api/orders/{id}` | Get specific order details |
+| `POST` | `/api/auth/register` | Register a local user (returns JWT) |
+| `POST` | `/api/auth/login`    | Login (returns JWT) |
+| `GET`  | `/api/auth/me`       | Current user profile (Bearer token) |
+| `GET`  | `/api/products`      | Fetch product catalog |
+| `POST` | `/api/checkout/purchase` | Create order + Stripe payment intent |
+| `POST` | `/api/webhook/stripe` | Stripe event handler (verifies signature) |
+| `GET`  | `/api/orders`        | List current user's orders (Bearer token) |
 
 ---
 
