@@ -74,12 +74,29 @@ This project follows a modular and layered architecture:
 - **Security**: OAuth2 with Okta
 - **Configuration**: Externalized settings via `.env` and `application.properties`
 
+### 📐 Diagrams (editable Excalidraw)
+
+These diagrams are generated from the actual code (`scripts/gen-diagrams.py`).
+Open any `.excalidraw` file with [excalidraw.com](https://excalidraw.com) (File →
+Open) or the VSCode Excalidraw extension:
+
+| Diagram | File |
+|---------|------|
+| Layered architecture (Controller → Service → DAO → Entity → MySQL + Security/DTO/Config) | [`erd/architecture-layers.excalidraw`](erd/architecture-layers.excalidraw) |
+| Entity Relationship (tables, PK/FK, cardinalities) | [`erd/ERD.excalidraw`](erd/ERD.excalidraw) |
+| Docker Compose stack (db, oidc, app + host `.env`) | [`erd/docker-architecture.excalidraw`](erd/docker-architecture.excalidraw) |
+| Auth flow: local JWT (HS256) + Okta/mock OIDC (RS256) | [`erd/okta-auth-flow.excalidraw`](erd/okta-auth-flow.excalidraw) |
+| Stripe payment flow (purchase → PaymentIntent → webhook → PAID) | [`erd/stripe-payment-flow.excalidraw`](erd/stripe-payment-flow.excalidraw) |
+
+Regenerate after code changes with `python3 scripts/gen-diagrams.py`.
+
 ### 🔗 Entity Relationships
 
 - One **Customer** → Many **Orders**
 - One **Order** → Many **OrderItems**
 - One **Order** → One **Shipping Address** & One **Billing Address**
 - One **Product** → One **ProductCategory**
+- One **Country** → Many **States**
 
 ---
 
