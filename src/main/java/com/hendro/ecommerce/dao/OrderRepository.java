@@ -12,4 +12,6 @@ public interface OrderRepository extends JpaRepository<Order,Long> {
 
     Page<Order> findByCustomerEmailOrderByDateCreatedDesc(@Param("email") String email, Pageable pageable);
 
+    Order findByOrderTrackingNumber(@Param("orderTrackingNumber") String orderTrackingNumber);
+
 }

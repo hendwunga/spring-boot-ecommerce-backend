@@ -33,3 +33,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Docker dev secrets (self-signed mock OIDC, dev only) ###
+docker/oidc/cert.pem
+docker/oidc/key.pem

@@ -1,0 +1,47 @@
+services:
+  db:
+    image: mysql:8.4
+    environment:
+      MYSQL_DATABASE: ecommerce
+      MYSQL_USER: ecommerce
+      MYSQL_PASSWORD: ecommerce123
+      MYSQL_ROOT_PASSWORD: rootpass123
+    ports:
+      - "3308:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -p$$MYSQL_ROOT_PASSWORD"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+
+  oidc:
+    build: ./docker/oidc
+    environment:
+      ISSUER_BASE: "https://oidc:8085"
+    ports:
+      - "8085:8085"
+
+  app:
+    build: .
+    depends_on:
+      db:
+        condition: service_healthy
+      oidc:
+        condition: service_started
+    environment:
+      DATABASE_URL: jdbc:mysql://db:3306/ecommerce?createDatabaseIfNotExist=true
+      DATABASE_USERNAME: ecommerce
+      DATABASE_PASSWORD: ecommerce123
+      OKTA_CLIENT_ID: mock-client
+      OKTA_ISSUER: https://oidc:8085/oauth2/default
+      STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY}
+      STRIPE_WEBHOOK_SECRET: ${STRIPE_WEBHOOK_SECRET}
+      JWT_SECRET: ${JWT_SECRET}
+      ALLOWED_ORIGINS: http://localhost:3000
+    ports:
+      - "9898:9898"
+
+volumes:
+  mysql-data:
